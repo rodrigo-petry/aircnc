@@ -1,0 +1,154 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definições de estilos -->
+  <defs>
+    <style>
+      .feature-box { fill: #fff3e0; stroke: #e65100; stroke-width: 2; }
+      .develop-box { fill: #e8f5e8; stroke: #1b5e20; stroke-width: 2; }
+      .qa-box { fill: #f3e5f5; stroke: #4a148c; stroke-width: 2; }
+      .main-box { fill: #e1f5fe; stroke: #01579b; stroke-width: 2; }
+      .hotfix-box { fill: #ffebee; stroke: #b71c1c; stroke-width: 2; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+      .title { font-family: Arial, sans-serif; font-size: 14px; text-anchor: middle; font-weight: bold; }
+      .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .arrow-approve { stroke: #2e7d32; stroke-width: 2; fill: none; marker-end: url(#arrowhead-green); }
+      .arrow-reject { stroke: #d32f2f; stroke-width: 2; fill: none; marker-end: url(#arrowhead-red); }
+      .arrow-hotfix { stroke: #b71c1c; stroke-width: 2; fill: none; marker-end: url(#arrowhead-red); }
+      .label { font-family: Arial, sans-serif; font-size: 10px; text-anchor: middle; fill: #666; }
+    </style>
+    
+    <!-- Marcadores de seta -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2e7d32" />
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#d32f2f" />
+    </marker>
+  </defs>
+
+  <!-- Título -->
+  <text x="600" y="30" class="title" style="font-size: 18px;">Fluxo Git Melhorado - Garantindo QA antes da Produção</text>
+
+  <!-- Feature Branches -->
+  <rect x="50" y="100" width="150" height="80" rx="5" class="feature-box"/>
+  <text x="125" y="125" class="title">Feature A</text>
+  <text x="125" y="145" class="text">Nova funcionalidade</text>
+  <text x="125" y="160" class="text">completa</text>
+
+  <rect x="50" y="220" width="150" height="80" rx="5" class="feature-box"/>
+  <text x="125" y="245" class="title">Feature B</text>
+  <text x="125" y="265" class="text">Nova funcionalidade</text>
+  <text x="125" y="280" class="text">completa</text>
+
+  <!-- Develop Branch -->
+  <rect x="350" y="160" width="150" height="80" rx="5" class="develop-box"/>
+  <text x="425" y="185" class="title">Develop</text>
+  <text x="425" y="205" class="text">Features completas</text>
+  <text x="425" y="220" class="text">Code review ✅</text>
+
+  <!-- Release/QA Branch -->
+  <rect x="650" y="160" width="150" height="80" rx="5" class="qa-box"/>
+  <text x="725" y="185" class="title">Release/QA</text>
+  <text x="725" y="205" class="text">🧪 Testando</text>
+  <text x="725" y="220" class="text">Validação QA</text>
+
+  <!-- Main Branch -->
+  <rect x="950" y="160" width="150" height="80" rx="5" class="main-box"/>
+  <text x="1025" y="185" class="title">Main</text>
+  <text x="1025" y="205" class="text">(Produção)</text>
+  <text x="1025" y="220" class="text">🚀 Deploy</text>
+
+  <!-- Hotfix Branch -->
+  <rect x="950" y="350" width="150" height="80" rx="5" class="hotfix-box"/>
+  <text x="1025" y="375" class="title">Hotfix</text>
+  <text x="1025" y="395" class="text">🚨 Correção</text>
+  <text x="1025" y="410" class="text">urgente</text>
+
+  <!-- Setas principais do fluxo -->
+  <!-- Feature A -> Develop -->
+  <line x1="200" y1="140" x2="350" y2="180" class="arrow"/>
+  <text x="275" y="155" class="label">merge após</text>
+  <text x="275" y="170" class="label">desenvolvimento</text>
+
+  <!-- Feature B -> Develop -->
+  <line x1="200" y1="260" x2="350" y2="220" class="arrow"/>
+  <text x="275" y="245" class="label">merge após</text>
+  <text x="275" y="260" class="label">desenvolvimento</text>
+
+  <!-- Develop -> Release/QA -->
+  <line x1="500" y1="200" x2="650" y2="200" class="arrow"/>
+  <text x="575" y="190" class="label">features prontas</text>
+  <text x="575" y="205" class="label">para teste</text>
+
+  <!-- Release/QA -> Main (aprovação) -->
+  <line x1="800" y1="200" x2="950" y2="200" class="arrow-approve"/>
+  <text x="875" y="190" class="label">QA aprovou</text>
+  <text x="875" y="205" class="label">✅ Validado</text>
+
+  <!-- Release/QA -> Develop (rejeição) -->
+  <path d="M 725 240 Q 725 300 575 300 Q 425 300 425 240" class="arrow-reject"/>
+  <text x="575" y="320" class="label" style="fill: #d32f2f;">Bug encontrado - volta para dev</text>
+
+  <!-- Main -> Hotfix -->
+  <line x1="1025" y1="240" x2="1025" y2="350" class="arrow-hotfix"/>
+  <text x="1045" y="295" class="label" style="fill: #b71c1c;">bug crítico</text>
+
+  <!-- Hotfix -> Main -->
+  <path d="M 950 390 Q 900 390 900 200 Q 900 200 950 200" class="arrow-hotfix"/>
+  <text x="850" y="295" class="label" style="fill: #b71c1c;">correção</text>
+  <text x="850" y="310" class="label" style="fill: #b71c1c;">testada</text>
+
+  <!-- Hotfix -> Develop -->
+  <path d="M 950 410 Q 500 450 425 240" class="arrow-hotfix"/>
+  <text x="600" y="470" class="label" style="fill: #b71c1c;">sync para próximas releases</text>
+
+  <!-- Barreiras visuais -->
+  <!-- Barreira QA -->
+  <rect x="630" y="140" width="10" height="120" fill="#9c27b0" opacity="0.3"/>
+  <text x="635" y="280" class="label" style="fill: #9c27b0; font-weight: bold;">BARREIRA QA</text>
+  <text x="635" y="295" class="label" style="fill: #9c27b0;">Nada passa sem</text>
+  <text x="635" y="310" class="label" style="fill: #9c27b0;">validação</text>
+
+  <!-- Legenda -->
+  <g transform="translate(50, 500)">
+    <text x="0" y="20" class="title" style="font-size: 16px;">Legenda:</text>
+    
+    <rect x="0" y="40" width="20" height="15" class="feature-box"/>
+    <text x="30" y="52" class="text">Feature Branches - Desenvolvimento de novas funcionalidades</text>
+    
+    <rect x="0" y="65" width="20" height="15" class="develop-box"/>
+    <text x="30" y="77" class="text">Develop - Features completas, aguardando QA</text>
+    
+    <rect x="0" y="90" width="20" height="15" class="qa-box"/>
+    <text x="30" y="102" class="text">Release/QA - Testando features antes da produção</text>
+    
+    <rect x="0" y="115" width="20" height="15" class="main-box"/>
+    <text x="30" y="127" class="text">Main - Produção estável, apenas código aprovado pelo QA</text>
+    
+    <rect x="0" y="140" width="20" height="15" class="hotfix-box"/>
+    <text x="30" y="152" class="text">Hotfix - Correções urgentes em produção</text>
+  </g>
+
+  <!-- Benefícios -->
+  <g transform="translate(600, 500)">
+    <text x="0" y="20" class="title" style="font-size: 16px;">Benefícios:</text>
+    <text x="0" y="45" class="text">✅ Features não testadas nunca chegam à produção</text>
+    <text x="0" y="65" class="text">✅ QA tem ambiente dedicado para validação</text>
+    <text x="0" y="85" class="text">✅ Desenvolvimento continua durante QA</text>
+    <text x="0" y="105" class="text">✅ Main sempre representa produção estável</text>
+    <text x="0" y="125" class="text">✅ Rollback rápido e seguro</text>
+    <text x="0" y="145" class="text">✅ Controle total do que vai para produção</text>
+  </g>
+
+  <!-- Processo QA detalhado -->
+  <g transform="translate(50, 650)">
+    <text x="0" y="20" class="title" style="font-size: 14px;">Processo QA Detalhado:</text>
+    <text x="0" y="45" class="text">1. Features completas vão da Develop → Release/QA</text>
+    <text x="0" y="65" class="text">2. QA testa em ambiente dedicado</text>
+    <text x="0" y="85" class="text">3. Se aprovado → Main (Produção)</text>
+    <text x="0" y="105" class="text">4. Se rejeitado → Volta para Develop (correção)</text>
+    <text x="0" y="125" class="text">5. Apenas código validado pelo QA chega à produção</text>
+  </g>
+</svg>
